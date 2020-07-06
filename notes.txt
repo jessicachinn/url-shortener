@@ -1,0 +1,57 @@
+I was not able to get the Makefile to work properly, so here are the steps you can follow
+
+#Setup the environment and install the node modules
+
+From the top level directory:
+
+     cd ./backend
+
+     npm install
+
+navigate to the frontend directory and do the same
+
+     cd ../frontend
+
+     npm install
+
+the node dependencies should be installed.
+
+
+#To run the services
+
+Navigate to the backend directory 
+
+     cd ../backend
+
+     npm start
+
+once the backend is running, you can navigate to the frontend and start it
+
+     cd ../frontend
+
+     npm start
+
+the browser window should open automatically, but if not you can go to http://localhost:3000 to interact with the app.
+
+
+#To run tests
+
+For the backend, make sure you're in the backend directory 
+
+    cd ../backend 
+
+ and run   
+
+    npm test
+
+the test suite should start and run through the tests.
+
+For the frontend, navigate to the frontend directory 
+
+cd ../frontend
+
+and run the test suite 
+
+    npm test
+
+you can then type `a` to run through all of the frontend unit tests.

@@ -41,19 +41,28 @@ describe("Routes", () => {
       });
   });
 
-  it("should get url", (done) => {
-    const hash = "rFx4r16uby"; // hash of existing object
+  it("should get url after new hash is created", (done) => {
+    let hash = "pkPlIhJ1si";
     chai
       .request(app)
-      .get(`/${hash}`)
+      .post("/shorten")
+      .set("Content-Type", "application/json")
+      .send({ originalUrl: "example.com" })
       .end((err, res) => {
         res.should.have.status(200);
-        res.body.url.originalUrl.should.equal("http://example.com");
-        res.body.url.hash.should.equal("rFx4r16uby");
-        res.body.url.shortenedUrl.should.equal(
-          "http://localhost:3000/rFx4r16uby"
-        );
-        done();
+        hash = res.body.url.hash;
+        chai
+          .request(app)
+          .get(`/${hash}`)
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.body.url.originalUrl.should.equal("http://example.com");
+            res.body.url.hash.should.equal(hash);
+            res.body.url.shortenedUrl.should.equal(
+              `http://localhost:3000/${hash}`
+            );
+            done();
+          });
       });
   });
 });
